@@ -9,7 +9,7 @@ For a more fleshed out package, you might consider trying [Laravel Medialibrary]
 ## Installation
 
 ```bash
-composer require jeffreyvanrossum/laravel-simple-media --dev-master
+composer require jeffreyvanrossum/laravel-simple-media
 ```
 
 ## Configuration
@@ -48,7 +48,7 @@ The default image driver is `gd`. You could also specify `imagick` in the config
 
 ### Storage
 
-You can specifiy which Storage disk should be used for your uploads in the configuration file. By default, it uses `public`.
+You can specifiy which [File Storage](https://laravel.com/docs/7.x/filesystem) disk should be used for your uploads in the configuration file. By default, it uses `public`.
 
 ## Usage
 
@@ -66,6 +66,12 @@ Calling these methods will automatically insert a record into the database. You 
 
 ```php
 Media::uploadImage($file, ['name' => 'A custom name', 'group' => 'profile-images']);
+```
+
+You can upload to a different disk then the one that is specified in the configuration file like this:
+
+```php
+Media::uploadImage($file, ['disk' => 'local']);
 ```
 
 You can handle uploads from the `Request` by using these methods:
